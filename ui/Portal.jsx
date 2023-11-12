@@ -3,22 +3,19 @@ import { Component } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
+const portalRoot = document.body
+
 export default class Portal extends Component {
 
     static propTypes = {
-        root: PropTypes.object,
         className: PropTypes.string,
         children: PropTypes.node,
         onPortalDidMount: PropTypes.func,
         onPortalWillUnmount: PropTypes.func,
     }
 
-    static defaultProps = {
-        root: document.body,
-    }
-
-    constructor(...args) {
-        super(...args)
+    constructor(props) {
+        super(props)
 
         this._target = document.createElement('div')
         if (this.props.className)
@@ -28,15 +25,10 @@ export default class Portal extends Component {
 
     componentDidMount() {
 
-        const {
-            root,
-            onPortalDidMount,
-        } = this.props
+        portalRoot.appendChild(this._target)
 
-        root.appendChild(this._target)
-
-        if (typeof onPortalDidMount === 'function')
-            onPortalDidMount(this._target)
+        if (typeof this.props.onPortalDidMount === 'function')
+            this.props.onPortalDidMount(this._target)
 
     }
 
@@ -49,15 +41,10 @@ export default class Portal extends Component {
 
     componentWillUnmount() {
 
-        const {
-            root,
-            onPortalWillUnmount,
-        } = this.props
+        if (typeof this.props.onPortallWillUnmount === 'function')
+            this.props.onPortalWillUnmount(this._target)
 
-        if (typeof onPortalWillUnmount === 'function')
-            onPortalWillUnmount(this._target)
-
-        root.removeChild(this._target)
+        portalRoot.removeChild(this._target)
 
         this._target = null
 

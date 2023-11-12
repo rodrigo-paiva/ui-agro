@@ -3,7 +3,6 @@ if (typeof document !== 'undefined') {
     document.addEventListener('click', onEvent.bind(null, 'click'), true)
     document.addEventListener('keydown', onEvent.bind(null, 'keydown'))
     document.addEventListener('keyup', onEvent.bind(null, 'keyup'))
-    document.addEventListener('backbutton', onEvent.bind(null, 'backbutton'), false)
 }
 
 let handlerLists = {}
