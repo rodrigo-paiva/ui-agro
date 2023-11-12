@@ -1,0 +1,50 @@
+{
+  "name": "ui-stack",
+  "version": "0.15.0",
+  "description": "Utilities for React app dev and JS in general",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gatec-ntc/ui-stack.git"
+  },
+  "scripts": {
+    "fix-js": "eslint --fix --ext .js,.jsx ./ || true",
+    "lint-js": "eslint --ext .js,.jsx ./ || true"
+  },
+  "keywords": [
+    "react",
+    "ui"
+  ],
+  "author": "Bruno Assarisse <bruno@gatec.com.br>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gatec-ntc/ui-stack/issues"
+  },
+  "homepage": "https://github.com/gatec-ntc/ui-stack",
+  "peerDependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1"
+  },
+  "dependencies": {
+    "deep-equal": "^1.0.1",
+    "query-string": "^5.0.0",
+    "superagent": "^3.6.0"
+  },
+  "optionalDependencies": {
+    "font-awesome": "^4.7.0",
+    "intl": "^1.2.5",
+    "intl-locales-supported": "^1.0.0",
+    "react-ga": "^2.5.3",
+    "react-intl": "^2.3.0",
+    "react-router-dom": "^4.3.1",
+    "react-transition-group": "^2.4.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.5",
+    "eslint": "^5.0.1",
+    "eslint-import-resolver-webpack": "^0.10.1",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-react": "^7.10.0",
+    "webpack": "^4.12.1"
+  }
+}

@@ -1,0 +1,37 @@
+
+$loadingSize: 65%;
+
+.img, .loading, .error {
+    object-fit: contain;
+}
+
+.img {
+    width: auto;
+    transition-duration: 0.3s
+}
+
+.loading, .error {
+    width: auto !important;
+}
+
+.bgImg, .bgLoading, .bgError {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    .hiddenImg {
+        display: none;
+    }
+
+}
+
+.bgLoading, .bgError {
+    background-size: $loadingSize $loadingSize !important;
+}
+
+.bgLoading, .loading {
+    transition-duration: 0s !important;
+}
