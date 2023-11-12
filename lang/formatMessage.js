@@ -10,14 +10,11 @@ class KeyWrapper extends PureComponent {
     }
 }
 
-function isReactElement(element) {
-    return typeof element === 'object' && React.isValidElement(element)
-}
+export default formatMessage
 
-export default function formatMessage(key, values, opt = {}) {
+export function formatMessage(key, values, opt = {}) {
     if (!key)
         return ''
-
     const intl = getIntl()
     if (!intl)
         return key
@@ -25,26 +22,27 @@ export default function formatMessage(key, values, opt = {}) {
     const finalOpt = Object.assign({ id: key }, opt)
 
     if (values) {
+        let hasElements = false
+        let newValues = {}
 
-        let hasElements = Object
-            .values(values)
-            .some(isReactElement)
+        Object.keys(values).forEach(v => {
 
-        if (hasElements) {
-            let newValues = Array.isArray(values) ? [] : {}
+            let element = values[v]
+            if (typeof element !== 'object')
+                return
 
-            Object.keys(values).forEach(v => {
+            hasElements = true
 
-                if (isReactElement(element) && !element.key) {
-                    newValues[v] = <KeyWrapper key={`l_${key}_${v}`}>{element}</KeyWrapper>
-                } else {
-                    newValues[v] = element
-                }
+            if (React.isValidElement(element) && !element.key) {
+                newValues[v] = <KeyWrapper key={`l_${key}_${v}`}>{element}</KeyWrapper>
+            } else {
+                newValues[v] = element
+            }
 
-            })
+        })
 
+        if (hasElements)
             return <FormattedMessage {...finalOpt} values={newValues} />
-        }
     }
 
     return intl.formatMessage(finalOpt, values)

@@ -1,7 +1,9 @@
 
 import { getIntl } from './intl'
 
-export default function formatNumber(number, opt = {}) {
+export default formatNumber
+
+export function formatNumber(number, opt = {}) {
     const intl = getIntl()
     if (!intl)
         return number.toString()
